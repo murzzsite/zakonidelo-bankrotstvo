@@ -52,34 +52,6 @@ const LEAD_ENDPOINT = 'https://lead-relay.leestygpt.workers.dev/lead/94RY3AQAEY'
     });
   });
 
-  // ===== Калькулятор рассрочки: средняя стоимость 150 000 ₽ без процентов =====
-  const TOTAL = 150000;
-  const slider = $('#months');
-  const payEl = $('#pay');
-  const outEl = $('#months-out');
-  const commentEl = $('#f-comment');
-  const fmt = n => Math.round(n).toLocaleString('ru-RU').replace(/\s/g, ' ') + ' ₽';
-  let autoComment = '';
-  let summary = '';
-
-  const renderPay = () => {
-    if (!slider) return;
-    const m = Number(slider.value);
-    payEl.textContent = fmt(TOTAL / m);
-    outEl.textContent = m + ' мес.';
-    summary = 'Интересует рассрочка на ' + m + ' мес., ориентир ' + fmt(TOTAL / m).replace(/ /g, ' ') + ' в месяц.';
-  };
-  slider?.addEventListener('input', renderPay);
-  renderPay();
-
-  $('#price-cta')?.addEventListener('click', () => {
-    if (!commentEl) return;
-    if (commentEl.value.trim() === '' || commentEl.value === autoComment) {
-      commentEl.value = summary;
-      autoComment = summary;
-    }
-  });
-
   // ===== Форма → Cloudflare Worker → Telegram =====
   const form = $('#leadForm');
   form?.addEventListener('submit', async e => {
@@ -106,7 +78,6 @@ const LEAD_ENDPOINT = 'https://lead-relay.leestygpt.workers.dev/lead/94RY3AQAEY'
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
       btn.textContent = 'Заявка отправлена, мы перезвоним';
       form.reset();
-      autoComment = '';
     } catch (err) {
       console.error(err);
       btn.textContent = 'Не отправилось, попробуйте ещё раз';
