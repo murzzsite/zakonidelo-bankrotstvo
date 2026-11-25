@@ -204,6 +204,9 @@ h1, h2, .verb, .footer__name, .contact__tel, dt, .price__sentence {
 .form textarea { resize: vertical; }
 .form input:focus, .form textarea:focus { outline: 3px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
 .form .btn { margin-top: 18px; }
+.form .consent { display: flex; gap: 10px; align-items: flex-start; margin-top: 14px; font-weight: 400; line-height: 1.4; }
+.form .consent input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--accent); flex-shrink: 0; }
+.form .consent a { text-decoration: underline; }
 .form__note { font-size: var(--s-small); color: var(--muted); margin-top: 8px; line-height: 1.45; }
 
 
@@ -217,7 +220,7 @@ h1, h2, .verb, .footer__name, .contact__tel, dt, .price__sentence {
 
 /* ---------- политика ---------- */
 .doc { max-width: 760px; padding-block: 120px 120px; }
-.doc h1 { font-size: var(--s-head); margin-bottom: 40px; }
+.doc h1 { font-size: clamp(1.5rem, 6.4vw, 3.75rem); margin-bottom: 40px; overflow-wrap: anywhere; }
 .doc h2 { font-family: var(--text); font-weight: 600; font-size: var(--s-lead); line-height: 1.2; letter-spacing: 0; margin: 40px 0 12px; }
 .doc p { margin-bottom: 14px; }
 

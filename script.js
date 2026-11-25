@@ -66,6 +66,12 @@ const LEAD_ENDPOINT = 'https://lead-relay.leestygpt.workers.dev/lead/94RY3AQAEY'
       setTimeout(() => { btn.textContent = orig; }, 2200);
       return;
     }
+    if (!form.consent.checked) {
+      btn.textContent = 'Нужно согласие на обработку данных';
+      setTimeout(() => { btn.textContent = orig; }, 2600);
+      return;
+    }
+    delete payload.consent;
     payload.source = 'zakonidelo-bankrotstvo';
     btn.disabled = true;
     btn.textContent = 'Отправляем…';
